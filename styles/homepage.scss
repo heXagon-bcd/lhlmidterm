@@ -5,7 +5,13 @@
 //   padding: 40px 15px;
 //   text-align: center;
 // }
+body {
+  background-color: #8da9c4;
+}
 
+html {
+  background-color: linear-gradient(to left, #2f472b, #0fcd28);
+}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -23,10 +29,11 @@
 .b-example-divider {
   width: 100%;
   height: 3rem;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
   border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
 }
 
 .b-example-vr {
@@ -36,7 +43,7 @@
 }
 
 .bi {
-  vertical-align: -.125em;
+  vertical-align: -0.125em;
   fill: currentColor;
 }
 
@@ -76,4 +83,23 @@
 }
 .bd-mode-toggle {
   z-index: 1500;
+}
+.card-with-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-row {
+  margin-bottom: 10px;
 }

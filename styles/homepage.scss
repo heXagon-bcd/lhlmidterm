@@ -7,11 +7,9 @@
 // }
 body {
   background-color: #8da9c4;
+  background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png");
 }
 
-html {
-  background-color: linear-gradient(to left, #2f472b, #0fcd28);
-}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -103,4 +101,86 @@ html {
 
 .input-row {
   margin-bottom: 10px;
+}
+.section {
+  background-color: #8da9c4;
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.section h5 {
+  color: #134074;
+}
+
+.section label {
+  display: block;
+  margin-bottom: 5px;
+  color: #13315c;
+}
+
+.section input {
+  width: 100%;
+  border: 1px solid #0b2545;
+  border-radius: 4px;
+}
+
+.section button {
+  padding: 10px 20px;
+  background-color: #134074;
+  color: #eef4ed;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.card-buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.row {
+  padding: 2rem;
+}
+.card-container {
+  padding: 2rem;
+}
+
+.custom-edit-button {
+  background-color: #0b2545;
+  color: #eef4ed;
+}
+
+.custom-delete-button {
+  background-color: #eef4ed;
+  color: #0b2545;
+}
+
+.card {
+  text-align: center;
+  background-color: #0b2545;
+  color: #eef4ed;
+  border-radius: 5%;
+}
+.card-contents {
+  text-align: left;
+}
+.card-title {
+  border-bottom: 1px solid #8da9c4;
+}
+.btn btn-outline-secondary {
+  background-color: #13315c;
+  color: white;
+  margin-top: 10px;
+}
+.form-control {
+  background-color: #eef4ed;
+  color: #0b2545;
+}
+.custom-input {
+  width: 100%;
+}
+.logout-button {
+  margin-top: 15px;
+  padding: 5px 10px;
 }

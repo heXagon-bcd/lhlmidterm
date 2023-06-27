@@ -174,17 +174,25 @@
 
             <strong>SmarTodo</strong>
           </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarHeader"
-            aria-controls="navbarHeader"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+
+          <div class="nav-right">
+            <div class="section-log">
+              <h5>Hello, Shawn</h5>
+              <button id="logoutBtn" class="logout-button">Logout</button>
+            </div>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarHeader"
+              aria-controls="navbarHeader"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
         </div>
       </div>
     </header>
@@ -192,8 +200,8 @@
     <main>
       <section class="py-5 text-center container section">
         <div class="row">
-          <div class="col-md-6">
-            <div class="input-group mb-12">
+          <div class="col">
+            <div class="input-group">
               <div class="input-row">
                 <input
                   type="text"
@@ -212,13 +220,6 @@
                   Submit
                 </button>
               </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="section-log">
-              <h5>Logged in as Shawn</h5>
-              <button id="logoutBtn" class="logout-button">Logout</button>
             </div>
           </div>
 

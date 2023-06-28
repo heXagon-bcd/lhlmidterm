@@ -4,7 +4,7 @@ const database = require("../db/database");
 const router = express.Router();
 
 //create tasks
-router.post('/post', (req,res) => {
+router.post('/', (req,res) => {
   database
     .addTask(req.body)
     .then((tasks) => {
@@ -16,11 +16,11 @@ router.post('/post', (req,res) => {
     });
 })
 //retrieve tasks
-router.get('/get', (req,res) => {
+router.get('/', (req,res) => {
   console.log("req", req.query)
   database
   .getTasksWithUsers('alice@gmail.com')
-  .then((tasks) => res.send({tasks}))
+  .then((tasks) => res.send(tasks))
   .catch((e) => {
     console.error(e);
     res.send(e);
@@ -36,4 +36,6 @@ router.put('/', (req,res) => {
 router.delete('/', (req,res) => {
   res.send('Hi shawn');
 })
+
+
 module.exports = router;

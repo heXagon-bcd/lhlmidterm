@@ -11,7 +11,7 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Hugo 0.112.5" />
-    <title>SmartTodoApp</title>
+    <title>SmartTodoApp hey</title>
 
     <link
       rel="canonical"
@@ -25,8 +25,15 @@
       crossorigin="anonymous"
     />
 
+    <!-- EXTERNAL JS  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- Custom styles for this template -->
-    <link href="/styles/homepage.css" rel="stylesheet" />
+    <link type="application/javascript" href="/styles/homepage.css" rel="stylesheet" />
+
+    <!-- APP JS -->
+    <script src = "/scripts/tasks.js" type="text/javascript"></script>
+
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
@@ -203,8 +210,10 @@
           <div class="col">
             <div class="input-group">
               <div class="input-row">
+          <form id ="task-form">
                 <input
                   type="text"
+                  name="task_description"
                   class="form-control custom-input"
                   placeholder="Enter the task to do..."
                   aria-label="Example text with button addon"
@@ -222,7 +231,7 @@
               </div>
             </div>
           </div>
-
+        </form>
           <script>
             // Logout button click event handler
             const logoutButton = document.getElementById("logoutBtn");

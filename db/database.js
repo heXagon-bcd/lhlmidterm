@@ -26,10 +26,11 @@ const getTasksWithUsers = function (email) {
     });
 }
 
-const addTask = function (task_description) {//expecting a string -> doenst carry where its coming from.
+const addTask = function (task_description, cateogry) {//expecting a string -> doenst carry where its coming from.
 if(!task_description){
   throw new Error("task description can't be blank!")
 }
+if(cateogry)
  const queryString = `
  INSERT INTO tasks (task_description, user_id, category_id) VALUES ($1, 1, 5)
  RETURNING *;

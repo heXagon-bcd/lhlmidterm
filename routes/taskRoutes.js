@@ -1,5 +1,6 @@
 const express = require("express");
 const database = require("../db/database");
+const openai = require("../scripts/openai")
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.post("/", (req, res) => {
       console.error(e);
       res.status(500).send(e);//review doc on status -> if no status delcare, front end ajax will determine as success
     });
+  openai.categoz
 });
 
 //retrieve tasks

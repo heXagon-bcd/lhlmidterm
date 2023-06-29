@@ -45,6 +45,20 @@ const addTask = function(task_description) {//expecting a string -> doenst carry
   //    console.log(err.message);
   //  });
 };
+const deleteTask = function(taskID) {
+  const queryString = 'DELETE FROM tasks WHERE id = $1 RETURNING *';
+
+  return pool
+    .query(queryString, [taskID])
+    .then((result) => {
+      console.log("Deleted task:", result.rows);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 
 const editTask = function(user) {
 
@@ -59,4 +73,5 @@ console.log(getTasksWithUsers('alice@gmail.com'));
 module.exports = {
   getTasksWithUsers,
   addTask,
+  deleteTask
 };

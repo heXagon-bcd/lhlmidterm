@@ -26,6 +26,7 @@ const getTasksWithUsers = function(email) {
     });
 };
 
+<<<<<<< HEAD
 const addTask = function(task_description) {
   const queryString = `
  INSERT INTO tasks (name, user_id, category_id) VALUES ($1, 1, 5)
@@ -41,6 +42,27 @@ const addTask = function(task_description) {
       console.log(err.message);
     });
 };
+=======
+const addTask = function (task_description) {//expecting a string -> doenst carry where its coming from.
+if(!task_description){
+  throw new Error("task description can't be blank!")
+}
+ const queryString = `
+ INSERT INTO tasks (task_description, user_id, category_id) VALUES ($1, 1, 5)
+ RETURNING *;
+ `
+ return pool
+ .query(queryString, [task_description])
+ .then( (result) => {
+  console.log("add task", result.rows);
+   return result.rows;
+ })
+//wont actually thorw an erroor on front end because we're catching the error in this funct- router wont see the response.
+//  .catch((err) => {
+//    console.log(err.message);
+//  });
+}
+>>>>>>> f87e10cf44da950aafc62f541a92cec39da5f918
 
 const editTask = function(user) {
 

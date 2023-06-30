@@ -184,7 +184,7 @@
 
           <div class="nav-right">
             <div class="section-log">
-              <h5>Hello, Shawn</h5>
+              <h5>Hello, Alice</h5>
               <button id="logoutBtn" class="logout-button">Logout</button>
             </div>
 
@@ -293,28 +293,30 @@
 ];
 
         // Function to generate the HTML code for each card
-        function generateCardHTML(card) {
-          const contentItems = card.content
-            .map((content) => `<li>${content}</li>`)
-            .join("");
+        
+// Function to generate the HTML code for each card
+function generateCardHTML(card) {
+  const contentItems = card.content
+    .map((content) => `<li><input type="checkbox">${content}</li>`)
+    .join("");
 
-          return `
-      <div class="col-md-3 card-container">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">${card.heading}</h5>
-                      <ul class="card-contents">${contentItems}</ul>
-            <div class="card-buttons">
-              <button class="btn btn-sm btn-outline-primary custom-edit-button">Edit</button>
-<button class="btn btn-outline-secondary custom-delete-button" id="delete-task">Delete</button>
-
-            </div>
+  return `
+    <div class="col-md-3 card-container">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">${card.heading}</h5>
+          <ul class="card-contents ${card.heading.toLowerCase()}">${contentItems}</ul>
+          <div class="card-buttons">
+            <button class="btn btn-sm btn-outline-primary custom-edit-button">Edit</button>
+            <button class="btn btn-outline-secondary custom-delete-button" id="delete-task">Delete</button>
           </div>
         </div>
       </div>
-    `;
-        }
-        
+    </div>
+  `;
+}
+
+
 
         // Generate the HTML code for all cards
         const cardContainer = document.getElementById("card-container");

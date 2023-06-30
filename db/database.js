@@ -65,5 +65,4 @@ const changeTask = function(user) {
 module.exports = {
   getTasksWithUsers,
   addTask,
-  deleteTask
 };

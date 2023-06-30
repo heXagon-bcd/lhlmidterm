@@ -52,15 +52,28 @@ if(!category) {
 
 const editTask = function(user) {
 
+
 };
 
-const changeTask = function(user) {
-
+const deleteTask = function(task_id) {
+  queryString = `
+  DELETE FROM TASKS
+  WHERE ID = $1
+  RETURNING *;
+  `
+  return pool
+  .query(queryString, [task_id])
+  .then((result) => {
+    console.log("delete task", result.rows);
+    return result.rows;
+  })
 };
 
 // console.log(getTasksWithUsers('alice@gmail.com', 1))
 // console.log(addTask("i want to bike", 5))
-
+// deleteTask(11)
+// .then((result) =>
+// console.log(result));
 
 module.exports = {
   getTasksWithUsers,

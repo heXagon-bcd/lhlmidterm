@@ -39,9 +39,9 @@ router.get("/", (req, res) => {
   database
     .getTasksWithUsers("alice@gmail.com")
     .then((tasks) => res.send(tasks))
-    .catch((e) => {
-      console.error(e);
-      res.send(e);
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send(error);
     });
 });
 
@@ -52,23 +52,13 @@ router.put("/", (req, res) => {
 
 //delete tasks
 router.delete("/", (req, res) => {
-  res.send("Hi shawn");
-});
-
-// delete tasks
-router.delete("/:taskID", (req, res) => {
-  const taskID = req.body.taskID;
-
   database
-    .deleteTask(taskID) // Call the deleteTask function from the database module
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((e) => {
-      console.error(e);
-      res.status(500).send(e);
-    });
+  .deletetask(task_id)
+  .then(() => res.send(tasks))
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send(error);
+  });
 });
-
 
 module.exports = router;

@@ -21,9 +21,9 @@ const getTasksWithUsers = function(email) {
       console.log("getTaskswithUsers", result.rows);
       return result.rows;
     })
-    .catch((err) => {
-      console.log(err.message);
-    });
+    // .catch((err) => {
+    //   console.log(err.message);
+    // });
 };
 
 const addTask = function (task_description, category) {//expecting a string -> doenst carry where its coming from.

@@ -4,10 +4,22 @@ $(document).ready(function() {
 
   const createTaskElement = function(task) {
     const $taskContainer = $(`
-  <li>${task.task_description}</li>
-  `);
-    $(".card-contents").append($taskContainer);
+      <li>${task.task_description}</li>
+    `);
+    // Categorize the task based on its category ID
+    if (task.category_id === 1) {
+      $(".card-contents.movies").prepend($taskContainer);
+    } else if (task.category_id === 2) {
+      $(".card-contents.books").prepend($taskContainer);
+    } else if (task.category_id === 4) {
+      $(".card-contents.restaurants").prepend($taskContainer);
+    } else if (task.category_id === 3) {
+      $(".card-contents.products").prepend($taskContainer);
+    } else {
+      $(".card-contents.uncategorized").prepend($taskContainer);
+    }
   };
+
 
   const renderTasks = function(tasks) {
     console.log("tasks", tasks);
@@ -26,7 +38,7 @@ $(document).ready(function() {
       });
   };
   //load tasks wtihout needing to press intial submit
-  loadTasks();
+  //loadTasks();
 
   //Delete task
   const deleteTask = function(taskID) {
@@ -53,20 +65,20 @@ $(document).ready(function() {
 
   //add tasks function
   $("#task-form").on("submit", function(event) {
-    event.preventDefault()// to prevent the default form submission behaviour.
-    const text = $(this).serialize().replaceAll('%20', ' ')
+    event.preventDefault();// to prevent the default form submission behaviour.
+    const text = $(this).serialize().replaceAll('%20', ' ');
     console.log("input text", text);
-    $.ajax ({
-    type: "POST",
-    url: "/api/taskRoutes",
-    data: text,
-    success: function (){//can respond newTask -> with the post request so that i can save one trip.
-      $.ajax("/api/taskRoutes", { method: "GET" })
-      .then(function(input) {
-        console.log("sucesss", input);
-        const latestPost = input[input.length - 1];
-        createTaskElement(latestPost)
-        })
+    $.ajax({
+      type: "POST",
+      url: "/api/taskRoutes",
+      data: text,
+      success: function() {//can respond newTask -> with the post request so that i can save one trip.
+        $.ajax("/api/taskRoutes", { method: "GET" })
+          .then(function(input) {
+            console.log("sucesss", input);
+            const latestPost = input[input.length - 1];
+            createTaskElement(latestPost);
+          });
       }
     });
   });

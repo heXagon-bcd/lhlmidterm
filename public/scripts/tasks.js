@@ -31,13 +31,13 @@ $(document).ready(function () {
   //add tasks function
   $("#task-form").on("submit", function(event) {
     event.preventDefault()// to prevent the default form submission behaviour.
-    const text = $(this).serialize();
+    const text = $(this).serialize().replaceAll('%20', ' ')
     console.log("input text", text);
     $.ajax ({
     type: "POST",
     url: "/api/taskRoutes",
     data: text,
-    success: function (){
+    success: function (){//can respond newTask -> with the post request so that i can save one trip.
       $.ajax("/api/taskRoutes", { method: "GET" })
       .then(function(input) {
         console.log("sucesss", input);

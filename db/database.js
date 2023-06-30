@@ -26,17 +26,20 @@ const getTasksWithUsers = function (email) {
     });
 }
 
-const addTask = function (task_description, cateogry) {//expecting a string -> doenst carry where its coming from.
+const addTask = function (task_description, category) {//expecting a string -> doenst carry where its coming from.
+console.log("add task - task desc, cat", task_description, category)
 if(!task_description){
   throw new Error("task description can't be blank!")
 }
-if(cateogry)
+if(!category) {
+  throw new Error("this category hasn't been filled")
+}
  const queryString = `
- INSERT INTO tasks (task_description, user_id, category_id) VALUES ($1, 1, 5)
+ INSERT INTO tasks (task_description, user_id, category_id) VALUES ($1, 1, $2)
  RETURNING *;
  `
  return pool
- .query(queryString, [task_description])
+ .query(queryString, [task_description, category])
  .then( (result) => {
   console.log("add task", result.rows);
    return result.rows;
@@ -55,7 +58,8 @@ const changeTask = function (user) {
 
 }
 
-console.log(getTasksWithUsers('alice@gmail.com'))
+// console.log(getTasksWithUsers('alice@gmail.com', 1))
+// console.log(addTask("i want to bike", 5))
 
 module.exports = {
   getTasksWithUsers,

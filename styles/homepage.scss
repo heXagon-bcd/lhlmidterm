@@ -140,12 +140,12 @@ body {
   justify-content: flex-start;
 }
 
-.row {
-  padding: 2rem;
-}
-.card-container {
-  padding: 2rem;
-}
+// .row {
+//   padding: 2rem;
+// }
+// .card-container {
+//   // padding: 2rem;
+// }
 
 .custom-edit-button {
   background-color: #0b2545;
@@ -168,6 +168,7 @@ body {
 }
 .card-contents {
   text-align: left;
+  padding-left: 0;
 }
 .card-title {
   border-bottom: 1px solid #13315c;
@@ -198,4 +199,9 @@ footer {
   display: flex;
   align-items: flex-end;
   gap: 1rem;
+}
+
+.from-check {
+  display: flex;
+  justify-content: flex-start;
 }

@@ -4,8 +4,16 @@ $(document).ready(function() {
 
   const createTaskElement = function(task) {
     const $taskContainer = $(`
-      <li>${task.task_description}</li>
+    <div class="form-check">
+    <input class="tank-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="task-check-label" for="flexCheckDefault">
+    ${task.task_description}
+    </label>
+    </div>
     `);
+//     const $taskContainer = $(`
+//     <li>${task.task_description}</li>
+//  `);
     // Categorize the task based on its category ID
     if (task.category_id === 1) {
       $(".card-contents.movies").prepend($taskContainer);
@@ -38,29 +46,25 @@ $(document).ready(function() {
       });
   };
   //load tasks wtihout needing to press intial submit
-  //loadTasks();
+  loadTasks();
 
   //Delete task
-  const deleteTask = function(taskID) {
-    console.log("Deleting task with ID:", taskID);
+  // const deleteTask = function(taskID) {
+  //   console.log("Deleting task with ID:", taskID);
 
-    // Send a DELETE request to the server
-    $.ajax(`/api/taskRoutes/`, {
-      method: "DELETE"
-    })
-      .then(function(response) {
-        console.log("Task deleted successfully:", response);
-        // Reload the tasks after deletion
-        loadTasks();
-      })
-      .catch(function(error) {
-        console.log("Error deleting task:", error);
-      });
-  };
-  deleteTask();
-
-
-
+  //   // Send a DELETE request to the server
+  //   $.ajax(`/api/taskRoutes/`, {
+  //     method: "DELETE"
+  //   })
+  //     .then(function(response) {
+  //       console.log("Task deleted successfully:", response);
+  //       // Reload the tasks after deletion
+  //       loadTasks();
+  //     })
+  //     .catch(function(error) {
+  //       console.log("Error deleting task:", error);
+  //     });
+  // };
 
 
   //add tasks function
@@ -82,4 +86,7 @@ $(document).ready(function() {
       }
     });
   });
+
+  //delete task based on checkmark
+
 });

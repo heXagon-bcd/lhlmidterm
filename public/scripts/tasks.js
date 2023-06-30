@@ -4,12 +4,14 @@ $(document).ready(function() {
 
   const createTaskElement = function(task) {
     const $taskContainer = $(`
+    <form class="check-box">
     <div class="form-check">
     <input class="tank-check-input" type="checkbox" value="" id="flexCheckDefault">
     <label class="task-check-label" for="flexCheckDefault">
     ${task.task_description}
     </label>
     </div>
+    <form>
     `);
 //     const $taskContainer = $(`
 //     <li>${task.task_description}</li>
@@ -43,6 +45,10 @@ $(document).ready(function() {
       .then(function(tasks) {//pushed to front end as array/object(depending on format from server)
         //console.log("success", tasks);
         renderTasks(tasks);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send(error);
       });
   };
   //load tasks wtihout needing to press intial submit
@@ -82,11 +88,18 @@ $(document).ready(function() {
             console.log("sucesss", input);
             const latestPost = input[input.length - 1];
             createTaskElement(latestPost);
+          })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send(error);
           });
       }
     });
   });
 
   //delete task based on checkmark
-
+  $(document).on("click", ".check-box", function(event) {
+    event.preventDefault();
+    console.log("hello click box");
+});
 });

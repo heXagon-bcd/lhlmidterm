@@ -39,7 +39,7 @@ const taskRoutes = require("./routes/taskRoutes");
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/api/taskRoutes',taskRoutes);
+app.use('/api/taskRoutes', taskRoutes);
 
 // Note: mount other resources here, using the same pattern above
 

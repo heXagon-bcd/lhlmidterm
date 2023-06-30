@@ -2,29 +2,29 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   user: 'labber',
-  password: '',
+  password: 'labber',
   host: 'localhost',
   database: 'midterm'
 });
 
 
-const getTasksWithUsers = function (email) {
+const getTasksWithUsers = function(email) {
   const queryString = `
   select *
   from tasks t
   join users u on t.user_id = u.id
   where u.username = $1;
-  `
+  `;
   return pool
     .query(queryString, [email])
-    .then( (result) => {
+    .then((result) => {
       console.log("getTaskswithUsers", result.rows);
       return result.rows;
     })
     .catch((err) => {
       console.log(err.message);
     });
-}
+};
 
 const addTask = function (task_description, category) {//expecting a string -> doenst carry where its coming from.
 console.log("add task - task desc, cat", task_description, category)
@@ -50,18 +50,20 @@ if(!category) {
 //  });
 }
 
-const editTask = function (user) {
+const editTask = function(user) {
 
-}
+};
 
-const changeTask = function (user) {
+const changeTask = function(user) {
 
-}
+};
 
 // console.log(getTasksWithUsers('alice@gmail.com', 1))
 // console.log(addTask("i want to bike", 5))
 
+
 module.exports = {
   getTasksWithUsers,
   addTask,
+  deleteTask
 };

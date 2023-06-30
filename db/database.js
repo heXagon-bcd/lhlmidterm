@@ -26,39 +26,29 @@ const getTasksWithUsers = function(email) {
     });
 };
 
-const addTask = function(task_description) {//expecting a string -> doenst carry where its coming from.
-  if (!task_description) {
-    throw new Error("task description can't be blank!");
-  }
-  const queryString = `
- INSERT INTO tasks (task_description, user_id, category_id) VALUES ($1, 1, 5)
+const addTask = function (task_description, category) {//expecting a string -> doenst carry where its coming from.
+console.log("add task - task desc, cat", task_description, category)
+if(!task_description){
+  throw new Error("task description can't be blank!")
+}
+if(!category) {
+  throw new Error("this category hasn't been filled")
+}
+ const queryString = `
+ INSERT INTO tasks (task_description, user_id, category_id) VALUES ($1, 1, $2)
  RETURNING *;
- `;
-  return pool
-    .query(queryString, [task_description])
-    .then((result) => {
-      console.log("add task", result.rows);
-      return result.rows;
-    });
-  //wont actually thorw an erroor on front end because we're catching the error in this funct- router wont see the response.
-  //  .catch((err) => {
-  //    console.log(err.message);
-  //  });
-};
-const deleteTask = function(taskID) {
-  const queryString = 'DELETE FROM tasks WHERE id = $1 RETURNING *';
-
-  return pool
-    .query(queryString, [taskID])
-    .then((result) => {
-      console.log("Deleted task:", result.rows);
-      return result.rows;
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
-
+ `
+ return pool
+ .query(queryString, [task_description, category])
+ .then( (result) => {
+  console.log("add task", result.rows);
+   return result.rows;
+ })
+//wont actually thorw an erroor on front end because we're catching the error in this funct- router wont see the response.
+//  .catch((err) => {
+//    console.log(err.message);
+//  });
+}
 
 const editTask = function(user) {
 
@@ -68,7 +58,9 @@ const changeTask = function(user) {
 
 };
 
-console.log(getTasksWithUsers('alice@gmail.com'));
+// console.log(getTasksWithUsers('alice@gmail.com', 1))
+// console.log(addTask("i want to bike", 5))
+
 
 module.exports = {
   getTasksWithUsers,

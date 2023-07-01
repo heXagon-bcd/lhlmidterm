@@ -10,7 +10,7 @@ const pool = new Pool({
 
 const getTasksWithUsers = function(email) {
   const queryString = `
-  select *
+  select t.id as task_id, t.task_description, t.user_id, t.category_id, t.due_date, t.status, u.name as name, u.username
   from tasks t
   join users u on t.user_id = u.id
   where u.username = $1;
@@ -78,4 +78,5 @@ const deleteTask = function(task_id) {
 module.exports = {
   getTasksWithUsers,
   addTask,
+  deleteTask
 };

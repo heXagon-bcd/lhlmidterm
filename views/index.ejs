@@ -81,7 +81,7 @@
               <polyline points="9 15 12 12 15 15"></polyline>
             </svg>
 
-            <strong>taskbotics</strong>
+            <strong>taskBotics</strong>
           </a>
 
           <div class="nav-right">
@@ -171,17 +171,7 @@
 
             ],
           },
-          {
-            heading: "Others",
-            content: [
-
-            ],
-          },
         ];
-
-        const tasks = [
-
-];
 
         // Function to generate the HTML code for each card
 
@@ -192,23 +182,16 @@ function generateCardHTML(card) {
     .join("");
 
   return `
-    <div class="col-md-3 card-container">
+    <div class="col-md-12 card-container">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">${card.heading}</h5>
           <ul class="card-contents ${card.heading.toLowerCase()}">${contentItems}</ul>
-          <div class="card-buttons">
-            <button class="btn btn-sm btn-outline-primary custom-edit-button">Edit</button>
-            <button class="btn btn-outline-secondary custom-delete-button" id="delete-task">Delete</button>
-          </div>
         </div>
       </div>
     </div>
   `;
 }
-
-
-
         // Generate the HTML code for all cards
         const cardContainer = document.getElementById("card-container");
         cardData.forEach((card) => {
@@ -216,28 +199,6 @@ function generateCardHTML(card) {
           cardContainer.insertAdjacentHTML("beforeend", cardHTML);
         });
 
-
-
-  // Delete task code
-  $(document).on("click", "#delete-task", function() {
-    const taskID = $(this).data("task-id");
-    deleteTask(taskID);
-    console.log("Delete button clicked");
-  });
-  function deleteTask(taskID) {
-  // Implement your delete task logic here
-  console.log("Deleting task with ID:", taskID);
-    // Find the index of the task with the given ID in the array
-  const taskIndex = tasks.findIndex(task => task.id === taskID);
-
-  // If the task exists in the array, remove it
-  if (taskIndex !== -1) {
-    tasks.splice(taskIndex, 1);
-    console.log("Task deleted successfully.");
-  } else {
-    console.log("Task not found.");
-  }
-}
       </script>
     </main>
 

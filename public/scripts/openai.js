@@ -13,10 +13,10 @@ const categorizeInput = (input) => {
   return openai.createCompletion({
     model: "text-davinci-003",
     prompt: `I have 4 categories. 1: Movies, 2: Books, 3: Products, 4: Restaurants, and 5: Uncategorized.
-    Please categorize my following prompt, using only the number.
-    Return 5 if the falls into multiple categories. example: I want to eat at nobu should return 4 beceause user wants to eat.
-    Here's an example of a prompt that could have multiple categories: spiderman returns 5 because there are books, movies, and products associated with it.
-    Another example: Watch batman reuturns 1 because the user indicates they want to watch a movie.
+    Please categorize my input using only the number.
+    Return 5 if the input falls into multiple categories. example: I want to eat at nobu should return 4 because user wants to eat.
+    Here's an example of a prompt that would return 5. example : spiderman returns 5 because there are books, movies, and products associated with it.
+    Another example: Watch batman returns 1 because the user indicates they want to watch a movie.
     ONLY return a number.\n\n${input}\n\nCategory Number:`,
     temperature: 0,
     max_tokens: 1,

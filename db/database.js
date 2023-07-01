@@ -10,7 +10,7 @@ const pool = new Pool({
 
 const getTasksWithUsers = function(email) {
   const queryString = `
-  select *
+  select t.id as task_id, t.task_description, t.user_id, t.category_id, t.due_date, t.status, u.name as name, u.username
   from tasks t
   join users u on t.user_id = u.id
   where u.username = $1;
@@ -21,9 +21,9 @@ const getTasksWithUsers = function(email) {
       console.log("getTaskswithUsers", result.rows);
       return result.rows;
     })
-    .catch((err) => {
-      console.log(err.message);
-    });
+    // .catch((err) => {
+    //   console.log(err.message);
+    // });
 };
 
 const addTask = function (task_description, category) {//expecting a string -> doenst carry where its coming from.
@@ -52,17 +52,31 @@ if(!category) {
 
 const editTask = function(user) {
 
+
 };
 
-const changeTask = function(user) {
-
+const deleteTask = function(task_id) {
+  queryString = `
+  DELETE FROM TASKS
+  WHERE ID = $1
+  RETURNING *;
+  `
+  return pool
+  .query(queryString, [task_id])
+  .then((result) => {
+    console.log("delete task", result.rows);
+    return result.rows;
+  })
 };
 
 // console.log(getTasksWithUsers('alice@gmail.com', 1))
 // console.log(addTask("i want to bike", 5))
-
+// deleteTask(11)
+// .then((result) =>
+// console.log(result));
 
 module.exports = {
   getTasksWithUsers,
   addTask,
+  deleteTask
 };

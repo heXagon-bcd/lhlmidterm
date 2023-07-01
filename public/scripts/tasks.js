@@ -4,8 +4,18 @@ $(document).ready(function() {
 
   const createTaskElement = function(task) {
     const $taskContainer = $(`
-      <li>${task.task_description}</li>
+    <form class="check-box">
+    <div class="form-check">
+    <input class="tank-check-input" type="checkbox" value="${task.task_id}" id="${task.task_id}">
+    <label class="task-check-label" for="flexCheckDefault">
+    ${task.task_description}
+    </label>
+    </div>
+    <form>
     `);
+//     const $taskContainer = $(`
+//     <li>${task.task_description}</li>
+//  `);
     // Categorize the task based on its category ID
     if (task.category_id === 1) {
       $(".card-contents.movies").prepend($taskContainer);
@@ -35,32 +45,14 @@ $(document).ready(function() {
       .then(function(tasks) {//pushed to front end as array/object(depending on format from server)
         //console.log("success", tasks);
         renderTasks(tasks);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send(error);
       });
   };
   //load tasks wtihout needing to press intial submit
-  //loadTasks();
-
-  //Delete task
-  const deleteTask = function(taskID) {
-    console.log("Deleting task with ID:", taskID);
-
-    // Send a DELETE request to the server
-    $.ajax(`/api/taskRoutes/`, {
-      method: "DELETE"
-    })
-      .then(function(response) {
-        console.log("Task deleted successfully:", response);
-        // Reload the tasks after deletion
-        loadTasks();
-      })
-      .catch(function(error) {
-        console.log("Error deleting task:", error);
-      });
-  };
-  deleteTask();
-
-
-
+  loadTasks();
 
 
   //add tasks function
@@ -78,8 +70,30 @@ $(document).ready(function() {
             console.log("sucesss", input);
             const latestPost = input[input.length - 1];
             createTaskElement(latestPost);
+          })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send(error);
           });
       }
     });
   });
+
+  //delete task based on checkmark
+  $(document).on("click", ".check-box", function(event) {
+    event.preventDefault();
+    const $currentElement = $(this);//need to store as this will not be stored
+    const id = $currentElement.find('input[type="checkbox"]').attr('id');
+    $.ajax({
+      type: "DELETE",
+      url: "/api/taskRoutes",
+      data: `task_id=${id}`,
+      success: function() {
+        $.ajax("/api/taskRoutes", { method: "GET" })
+        .then(function(tasks) {
+          $currentElement.remove();
+        })
+      }
+    })
+    });
 });

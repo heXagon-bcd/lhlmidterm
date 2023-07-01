@@ -13,9 +13,9 @@ $(document).ready(function() {
     </div>
     <form>
     `);
-//     const $taskContainer = $(`
-//     <li>${task.task_description}</li>
-//  `);
+    //     const $taskContainer = $(`
+    //     <li>${task.task_description}</li>
+    //  `);
     // Categorize the task based on its category ID
     if (task.category_id === 1) {
       $(".card-contents.movies").prepend($taskContainer);
@@ -74,20 +74,21 @@ $(document).ready(function() {
           .catch((error) => {
             console.error(error);
             res.status(500).send(error);
-       });
+          });
       }
     });
     $("#task-text").val('');
   });
 
   //delete task based on checkmark
-$(document).on("change", ".check-box input[type='checkbox']", function(event) {
+  $(document).on("change", ".check-box input[type='checkbox']", function(event) {
     event.preventDefault();
     console.log("Checkbox change event triggered");
     const $currentElement = $(this).closest(".check-box");
     console.log($currentElement);
     const id = $(this).attr('id');
     if (this.checked) {
+      $currentElement.addClass("strike-through");
       setTimeout(function() {
         $.ajax({
           type: "DELETE",
@@ -98,6 +99,9 @@ $(document).on("change", ".check-box input[type='checkbox']", function(event) {
           }
         });
       }, 500); // Add a delay of 500 milliseconds (adjust as needed)
+    }
+    else {
+      $currentElement.removeClass("strike-through"); // Remove the strike-through class
     }
   });
 });

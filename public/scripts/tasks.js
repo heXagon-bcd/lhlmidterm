@@ -74,26 +74,30 @@ $(document).ready(function() {
           .catch((error) => {
             console.error(error);
             res.status(500).send(error);
-          });
+       });
       }
     });
+    $("#task-text").val('');
   });
 
   //delete task based on checkmark
-  $(document).on("click", ".check-box", function(event) {
+$(document).on("change", ".check-box input[type='checkbox']", function(event) {
     event.preventDefault();
-    const $currentElement = $(this);//need to store as this will not be stored
-    const id = $currentElement.find('input[type="checkbox"]').attr('id');
-    $.ajax({
-      type: "DELETE",
-      url: "/api/taskRoutes",
-      data: `task_id=${id}`,
-      success: function() {
-        $.ajax("/api/taskRoutes", { method: "GET" })
-        .then(function(tasks) {
-          $currentElement.remove();
-        })
-      }
-    })
-    });
+    console.log("Checkbox change event triggered");
+    const $currentElement = $(this).closest(".check-box");
+    console.log($currentElement);
+    const id = $(this).attr('id');
+    if (this.checked) {
+      setTimeout(function() {
+        $.ajax({
+          type: "DELETE",
+          url: "/api/taskRoutes",
+          data: `task_id=${id}`,
+          success: function() {
+            $currentElement.remove();
+          }
+        });
+      }, 500); // Add a delay of 500 milliseconds (adjust as needed)
+    }
+  });
 });

@@ -52,9 +52,10 @@ router.put("/", (req, res) => {
 
 //delete tasks
 router.delete("/", (req, res) => {
+  console.log("delete req", req.body)
   database
-  .deletetask(task_id)
-  .then(() => res.send(tasks))
+  .deleteTask(req.body.task_id)
+  .then( () => res.sendStatus(204))
   .catch((error) => {
     console.error(error);
     res.status(500).send(error);

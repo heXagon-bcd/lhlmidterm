@@ -6,7 +6,7 @@ $(document).ready(function() {
     const $taskContainer = $(`
     <form class="check-box">
     <div class="form-check">
-    <input class="tank-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <input class="tank-check-input" type="checkbox" value="${task.task_id}" id="${task.task_id}">
     <label class="task-check-label" for="flexCheckDefault">
     ${task.task_description}
     </label>
@@ -54,24 +54,6 @@ $(document).ready(function() {
   //load tasks wtihout needing to press intial submit
   loadTasks();
 
-  //Delete task
-  // const deleteTask = function(taskID) {
-  //   console.log("Deleting task with ID:", taskID);
-
-  //   // Send a DELETE request to the server
-  //   $.ajax(`/api/taskRoutes/`, {
-  //     method: "DELETE"
-  //   })
-  //     .then(function(response) {
-  //       console.log("Task deleted successfully:", response);
-  //       // Reload the tasks after deletion
-  //       loadTasks();
-  //     })
-  //     .catch(function(error) {
-  //       console.log("Error deleting task:", error);
-  //     });
-  // };
-
 
   //add tasks function
   $("#task-form").on("submit", function(event) {
@@ -100,6 +82,18 @@ $(document).ready(function() {
   //delete task based on checkmark
   $(document).on("click", ".check-box", function(event) {
     event.preventDefault();
-    console.log("hello click box");
-});
+    const $currentElement = $(this);//need to store as this will not be stored
+    const id = $currentElement.find('input[type="checkbox"]').attr('id');
+    $.ajax({
+      type: "DELETE",
+      url: "/api/taskRoutes",
+      data: `task_id=${id}`,
+      success: function() {
+        $.ajax("/api/taskRoutes", { method: "GET" })
+        .then(function(tasks) {
+          $currentElement.remove();
+        })
+      }
+    })
+    });
 });

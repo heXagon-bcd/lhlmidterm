@@ -7,6 +7,7 @@ const router = express.Router();
 //create tasks
 router.post("/", (req, res) => {
   // look at database.js  to make sure addTask
+  console.log("req.body", req.body)
   console.log("req.body.task_description", req.body.task_description);
   // database
   //   .addTask(req.body.task_description, openai.categorizeInput(req.body.task_description))

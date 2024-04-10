@@ -1,0 +1,82 @@
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user: 'labber',
+  password: 'labber',
+  host: 'localhost',
+  database: 'midterm'
+});
+
+
+const getTasksWithUsers = function(email) {
+  const queryString = `
+  select t.id as task_id, t.task_description, t.user_id, t.category_id, t.due_date, t.status, u.name as name, u.username
+  from tasks t
+  join users u on t.user_id = u.id
+  where u.username = $1;
+  `;
+  return pool
+    .query(queryString, [email])
+    .then((result) => {
+      console.log("getTaskswithUsers", result.rows);
+      return result.rows;
+    })
+    // .catch((err) => {
+    //   console.log(err.message);
+    // });
+};
+
+const addTask = function (task_description, category) {//expecting a string -> doenst carry where its coming from.
+console.log("add task - task desc, cat", task_description, category)
+if(!task_description){
+  throw new Error("task description can't be blank!")
+}
+if(!category) {
+  throw new Error("this category hasn't been filled")
+}
+ const queryString = `
+ INSERT INTO tasks (task_description, user_id, category_id) VALUES ($1, 1, $2)
+ RETURNING *;
+ `
+ return pool
+ .query(queryString, [task_description, category])
+ .then( (result) => {
+  console.log("add task", result.rows);
+   return result.rows;
+ })
+//wont actually thorw an erroor on front end because we're catching the error in this funct- router wont see the response.
+//  .catch((err) => {
+//    console.log(err.message);
+//  });
+}
+
+const editTask = function(user) {
+
+
+};
+
+const deleteTask = function(task_id) {
+  queryString = `
+  DELETE FROM TASKS
+  WHERE ID = $1
+  RETURNING *;
+  `
+  return pool
+  .query(queryString, [task_id])
+  .then((result) => {
+    console.log("delete task", result.rows);
+    return result.rows;
+  })
+};
+
+// console.log(getTasksWithUsers('alice@gmail.com', 1))
+// console.log(addTask("i want to bike", 5))
+// deleteTask(11)
+// .then((result) =>
+// console.log(result));
+
+module.exports = {
+  getTasksWithUsers,
+  addTask,
+  deleteTask
+};

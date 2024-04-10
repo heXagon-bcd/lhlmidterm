@@ -1,0 +1,15 @@
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('watch harry potter', 1, 1);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('read LOTR', 1, 2);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('read 1984', 1, 2);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('read War and Peace', 1, 2);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('watch The Matrix', 1, 1);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('eat at Nobu', 1, 4);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('eat at The French Laundry', 1, 4);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('eat at Noma', 1, 4);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('watch The Silence of the Lambs', 1, 1);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('watch Titanic', 1, 1);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('watch The Lion King', 1, 1);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('buy a Kindle', 1, 3);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('buy a Fitbit', 1, 3);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('read The Great Gatsby', 1, 2);
+INSERT INTO tasks (task_description, user_id, category_id) VALUES ('read The Catcher in the Rye', 1, 2);
